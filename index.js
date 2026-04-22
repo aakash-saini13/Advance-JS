@@ -99,36 +99,72 @@
 // bank.check()
 
 // factory Function Pattern
-function createProduct(name, price) {
-    let stock = 10;
-    return {
-        name,
-        price,
-        checkStock(){
-        console.log(`you have ${stock} quantity of ${name}`)
-        },
-        buy(qty) {
-            if (qty > stock) {
-                console.error("We have only limited stock ");
-            }
-            else {
-                stock -= qty;
-                console.log(`Product Buying Sucessfully we have ${stock} quantity left of ${name}`);
-            }
-        },
-        refill(qty) {
-            stock += qty;
-            console.log(`Stock Refill Sucessfully now you have ${stock} Quantity left of ${name}`)
+// function createProduct(name, price) {
+//     let stock = 10;
+//     return {
+//         name,
+//         price,
+//         checkStock(){
+//         console.log(`you have ${stock} quantity of ${name}`)
+//         },
+//         buy(qty) {
+//             if (qty > stock) {
+//                 console.error("We have only limited stock ");
+//             }
+//             else {
+//                 stock -= qty;
+//                 console.log(`Product Buying Sucessfully we have ${stock} quantity left of ${name}`);
+//             }
+//         },
+//         refill(qty) {
+//             stock += qty;
+//             console.log(`Stock Refill Sucessfully now you have ${stock} Quantity left of ${name}`)
+//         }
+//     }
+// }
+
+// let iphone = createProduct('17 pro', 70000);
+// iphone.buy(3);
+// console.log(iphone.name)
+// console.log(iphone.price)
+// console.log(`------------------`)
+// let biscuts = createProduct('tiger cookie', 10);
+// biscuts.buy(3);
+// console.log(biscuts.name)
+// console.log(biscuts.price)
+
+
+
+// Debouncing->ek delay k baad jb bhi aayega action ka reaction aayega
+
+// function debouncing(fnc, delay) {
+//     let timer;
+//     return function (...args) {
+//         clearTimeout(timer);
+//         timer = setTimeout(function () {
+//             fnc(...args)
+//         },delay)
+//     }
+// }
+
+// document.querySelector('input').addEventListener('input', debouncing(function () {
+//     console.log('hey')
+// }, 1000)
+// );
+
+// Throttle->interval pr chlega ,action agr hota rha and apne ek interval btaya to utne interval me apka event chlega
+
+function throttle(fnc, delay) {
+    let timer = 0;
+    return function (...args) {
+        let now = Date.now();
+        if (now - timer >= delay) {
+            timer = now;
+            fnc(...args)
         }
     }
 }
 
-let iphone = createProduct('17 pro', 70000);
-iphone.buy(3);
-console.log(iphone.name)
-console.log(iphone.price)
-console.log(`------------------`)
-let biscuts = createProduct('tiger cookie', 10);
-biscuts.buy(3);
-console.log(biscuts.name)
-console.log(biscuts.price)
+
+document.querySelector('input').addEventListener('input', throttle(function(){console.log('hey')}, 1000)
+);
