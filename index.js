@@ -68,32 +68,67 @@
 // bank.checkBankBalance()
 
 //Reveling Module pattern
-let bank = (function () {
-    let bankBalance = 0;
-    function checkBankBalance() {
-        console.log(`Your Bank Balance is ${bankBalance}`)
-    }
-    function setBankBalance(amount) {
-        bankBalance += amount;
-        console.log(`Amount Creadit Sucessfuly in your Acc. Your Current bankBalance is ${bankBalance}`)
-    }
-    function withdrawBankBalance(amount) {
-        if (amount > bankBalance) {
-            console.error(`Insuffucent Bank Balance You have only RS${bankBalance}`)
-        }
-        else {
-            bankBalance-=amount
-            console.log(`RS${amount} debited Sucessfully from your AC.Now your Bank Balance is ${bankBalance}`)
-        }
-    }
+// let bank = (function () {
+//     let bankBalance = 0;
+//     function checkBankBalance() {
+//         console.log(`Your Bank Balance is ${bankBalance}`)
+//     }
+//     function setBankBalance(amount) {
+//         bankBalance += amount;
+//         console.log(`Amount Creadit Sucessfuly in your Acc. Your Current bankBalance is ${bankBalance}`)
+//     }
+//     function withdrawBankBalance(amount) {
+//         if (amount > bankBalance) {
+//             console.error(`Insuffucent Bank Balance You have only RS${bankBalance}`)
+//         }
+//         else {
+//             bankBalance-=amount
+//             console.log(`RS${amount} debited Sucessfully from your AC.Now your Bank Balance is ${bankBalance}`)
+//         }
+//     }
+//     return {
+//         check:checkBankBalance,
+//         creadit:setBankBalance,
+//         debit:withdrawBankBalance
+//     }
+// })();
+// bank.check()
+// bank.creadit(1000);
+// bank.check()
+// bank.debit(100)
+// bank.check()
+
+// factory Function Pattern
+function createProduct(name, price) {
+    let stock = 10;
     return {
-        check:checkBankBalance,
-        creadit:setBankBalance,
-        debit:withdrawBankBalance
+        name,
+        price,
+        checkStock(){
+        console.log(`you have ${stock} quantity of ${name}`)
+        },
+        buy(qty) {
+            if (qty > stock) {
+                console.error("We have only limited stock ");
+            }
+            else {
+                stock -= qty;
+                console.log(`Product Buying Sucessfully we have ${stock} quantity left of ${name}`);
+            }
+        },
+        refill(qty) {
+            stock += qty;
+            console.log(`Stock Refill Sucessfully now you have ${stock} Quantity left of ${name}`)
+        }
     }
-})();
-bank.check()
-bank.creadit(1000);
-bank.check()
-bank.debit(100)
-bank.check()
+}
+
+let iphone = createProduct('17 pro', 70000);
+iphone.buy(3);
+console.log(iphone.name)
+console.log(iphone.price)
+console.log(`------------------`)
+let biscuts = createProduct('tiger cookie', 10);
+biscuts.buy(3);
+console.log(biscuts.name)
+console.log(biscuts.price)
