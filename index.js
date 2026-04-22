@@ -36,8 +36,38 @@
 // fun()
 
 
-// module method
+// module Pattern
+// let bank = (function () {
+//     let bankBalance = 0;
+//     function checkBankBalance() {
+//         console.log(`Your Bank Balance is ${bankBalance}`)
+//     }
+//     function setBankBalance(amount) {
+//         bankBalance += amount;
+//         console.log(`Amount Creadit Sucessfuly in your Acc. Your Current bankBalance is ${bankBalance}`)
+//     }
+//     function withdrawBankBalance(amount) {
+//         if (amount > bankBalance) {
+//             console.error(`Insuffucent Bank Balance You have only RS${bankBalance}`)
+//         }
+//         else {
+//             bankBalance-=amount
+//             console.log(`RS${amount} debited Sucessfully from your AC.Now your Bank Balance is ${bankBalance}`)
+//         }
+//     }
+//     return {
+//         checkBankBalance,
+//         setBankBalance,
+//         withdrawBankBalance
+//     }
+// })();
+// bank.checkBankBalance()
+// bank.setBankBalance(1000);
+// bank.checkBankBalance()
+// bank.withdrawBankBalance(100)
+// bank.checkBankBalance()
 
+//Reveling Module pattern
 let bank = (function () {
     let bankBalance = 0;
     function checkBankBalance() {
@@ -57,13 +87,13 @@ let bank = (function () {
         }
     }
     return {
-        checkBankBalance,
-        setBankBalance,
-        withdrawBankBalance
+        check:checkBankBalance,
+        creadit:setBankBalance,
+        debit:withdrawBankBalance
     }
 })();
-bank.checkBankBalance()
-bank.setBankBalance(1000);
-bank.checkBankBalance()
-bank.withdrawBankBalance(100)
-bank.checkBankBalance()
+bank.check()
+bank.creadit(1000);
+bank.check()
+bank.debit(100)
+bank.check()
