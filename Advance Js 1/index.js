@@ -154,17 +154,29 @@
 
 // Throttle->interval pr chlega ,action agr hota rha and apne ek interval btaya to utne interval me apka event chlega
 
-function throttle(fnc, delay) {
-    let timer = 0;
-    return function (...args) {
-        let now = Date.now();
-        if (now - timer >= delay) {
-            timer = now;
-            fnc(...args)
-        }
+// function throttle(fnc, delay) {
+//     let timer = 0;
+//     return function (...args) {
+//         let now = Date.now();
+//         if (now - timer >= delay) {
+//             timer = now;
+//             fnc(...args)
+//         }
+//     }
+// }
+
+
+// document.querySelector('input').addEventListener('input', throttle(function(){console.log('hey')}, 1000)
+// );
+
+
+function myMap(arr, callback) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++){
+        newArr.push(callback(arr[i], i, arr))
     }
+    return newArr;
 }
 
-
-document.querySelector('input').addEventListener('input', throttle(function(){console.log('hey')}, 1000)
-);
+let ans = myMap([1, 2, 3, 4], (val) => val * 2);
+console.log(ans)
