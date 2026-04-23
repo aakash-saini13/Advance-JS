@@ -132,3 +132,97 @@ section .task-column .task button{
     outline: none;
     background-color: var(--bg-delete-button-color);
 }
+/* Overlay */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+/* Show modal */
+.modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Box */
+.modal-content {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 320px;
+    color: #fff;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input,
+.input-group textarea {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Buttons */
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions button[type="submit"] {
+    background: #4caf50;
+    color: white;
+}
+
+.close-btn {
+    background: #f44336;
+    color: white;
+}
+.modal{
+    position:fixed;
+    height: 100vh;
+    width:100vw;
+    top:0;
+    left:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal .center{
+    background-color: var(--bg-button-color);;
+    padding: var(--padding-xxl);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    gap:var(--padding-m);
+    z-index: 10;
+}
